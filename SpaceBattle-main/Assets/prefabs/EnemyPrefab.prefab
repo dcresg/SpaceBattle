@@ -170,4 +170,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640d2dacd08e8e5479dd20d7a748661b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyController
-  enemyBullet: {fileID: 3214354843209933690, guid: 20ae97745b2d40c488aba4c94a07e227, type: 3}

@@ -2,30 +2,19 @@ using UnityEngine;
 
 public class enemyController : MonoBehaviour
 {
-    [SerializeField] public GameObject enemyBullet;
     Rigidbody2D rb;
-    float timer = 0;
+    private GameObject canvasGO;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
+        canvasGO = GameObject.FindGameObjectWithTag("canvas_gameover");
     }
 
     // Update is called once per frame
     void Update()
     {
         
-            
-        timer += Time.deltaTime;
-
-        if (timer > 0.8f)
-        {
-            timer = 0f;
-
-            GameObject newEnemy = Instantiate(enemyBullet);
-
-            newEnemy.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,6 +23,7 @@ public class enemyController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
+            
         }
 
         if (collision.gameObject.tag == "player")

@@ -9,12 +9,14 @@ public class SpaceshipScript : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject EnemyPrefab;
+    public Canvas myCanvas;
 
     float timer = 0;
     int cooldown = 0;
     void Start()
     {
-        
+        myCanvas.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -22,11 +24,11 @@ public class SpaceshipScript : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.D) && transform.position.x < 6.9f)
+        if (Input.GetKey(KeyCode.D) && transform.position.x < 10f)
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.A) && transform.position.x > -6.9f)
+        if (Input.GetKey(KeyCode.A) && transform.position.x > -10f)
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
@@ -52,5 +54,15 @@ public class SpaceshipScript : MonoBehaviour
 
 
         cooldown--;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            myCanvas.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 }

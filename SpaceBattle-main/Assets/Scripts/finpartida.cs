@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class finpartida : MonoBehaviour
 {
+
+    public Canvas myCanvas;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        myCanvas.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -20,11 +23,8 @@ public class finpartida : MonoBehaviour
         {
             Destroy(GameObject.FindGameObjectWithTag("player"));
             Destroy(collision.gameObject);
-        }
-
-        if (collision.gameObject.tag == "enemyBullet")
-        {
-            Destroy(collision.gameObject);
+            myCanvas.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 } 
